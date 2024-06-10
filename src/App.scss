@@ -33,7 +33,7 @@ img {
 }
 
 .container {
-  width: $container-width;
+  max-width: $container-width;
   margin: 0 auto;
 }
 
@@ -229,5 +229,11 @@ header {
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (width < 600px) {
+  html {
+    font-size: 50%;
   }
 }
