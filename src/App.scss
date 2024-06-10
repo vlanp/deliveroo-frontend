@@ -4,6 +4,15 @@
 
 // VARIABLE
 
+$green: #00cdbd;
+$description-color: #919595;
+$background-color: #f3f5f5;
+$header-height: 7rem;
+$container-width: 123rem;
+$restaurant-padding-right-left: 10px;
+$side-width: 35rem;
+$orange: #ff8000;
+
 // GENERAL
 
 * {
@@ -16,11 +25,209 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+img {
+  border-radius: 1rem;
+}
+
+.container {
+  width: $container-width;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+h2 {
+  padding: 2rem 0;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
 }
 
 // HEADER
 
+header {
+  height: $header-height;
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    div {
+      width: 6rem;
+      height: 6rem;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+    img {
+      height: 8rem;
+    }
+    p {
+      font-size: 3rem;
+      color: $green;
+    }
+  }
+}
+
 // MAIN
 
+.loading {
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  text-align: center;
+  justify-content: center;
+  height: calc(100vh - $header-height);
+  .loading-icon {
+    animation: circle 4s linear infinite;
+    width: fit-content;
+  }
+  @keyframes circle {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// RESTAURANT OVERVIEW
+
+.restaurant-overview {
+  padding: 20px $restaurant-padding-right-left;
+  display: flex;
+  > div:first-child {
+    padding-top: 2rem;
+    padding-right: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: calc(100vw - $side-width - 4 * $restaurant-padding-right-left);
+  }
+  img {
+    width: $side-width;
+    height: 20rem;
+    object-fit: cover;
+  }
+  p {
+    font-size: 2rem;
+    color: $description-color;
+    font-family: "IBM Plex Sans", sans-serif;
+    line-height: 3rem;
+  }
+}
+
+.restaurant-menu {
+  background-color: $background-color;
+  padding-bottom: 5rem;
+}
+
+.dish-overview {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: calc(
+    ($container-width - $side-width - 2rem - 2 * $restaurant-padding-right-left) /
+      2
+  );
+  img {
+    width: 13rem;
+    height: 13rem;
+    object-fit: cover;
+  }
+}
+
+.menu-categories {
+  padding: 0 1rem;
+}
+
+.menu-categories-dishes {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 3rem;
+}
+
+.dish-description {
+  color: $description-color;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.dish-price {
+  color: $description-color;
+}
+
+.dish-popular-price {
+  display: flex;
+  gap: 2rem;
+}
+
+.popular {
+  display: flex;
+  gap: 0.5rem;
+  color: orange;
+  font-family: "Stratos Deliveroo Web", sans-serif;
+  font-size: 1.4rem;
+}
+
 // FOOTER
+
+// MEDIA QUERY
+
+@media (width < 900px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (width < 800px) {
+  .restaurant-overview {
+    flex-direction: column;
+    gap: 2rem;
+    > div:first-child {
+      text-align: center;
+      padding: 0 10rem;
+      width: 100vw;
+    }
+    > div:last-child {
+      width: fit-content;
+      margin: 0 calc(40vw / 2);
+    }
+    img {
+      height: fit-content;
+      width: 60vw;
+    }
+  }
+
+  .category {
+    width: 100vw;
+    text-align: center;
+  }
+
+  .menu-categories-dishes {
+    width: 100vw;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+  }
+}

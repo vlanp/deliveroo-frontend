@@ -9,5 +9,199 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+img {
+  border-radius: 1rem;
+}
+
+.container {
+  width: 123rem;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+h2 {
+  padding: 2rem 0;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
+}
+
+header {
+  height: 7rem;
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+}
+header div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+header div div {
+  width: 6rem;
+  height: 6rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+header div img {
+  height: 8rem;
+}
+header div p {
+  font-size: 3rem;
+  color: #00cdbd;
+}
+
+.loading {
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  text-align: center;
+  justify-content: center;
+  height: calc(100vh - 7rem);
+}
+.loading .loading-icon {
+  animation: circle 4s linear infinite;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+@keyframes circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.restaurant-overview {
+  padding: 20px 10px;
+  display: flex;
+}
+.restaurant-overview > div:first-child {
+  padding-top: 2rem;
+  padding-right: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: calc(100vw - 35rem - 40px);
+}
+.restaurant-overview img {
+  width: 35rem;
+  height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.restaurant-overview p {
+  font-size: 2rem;
+  color: #919595;
+  font-family: "IBM Plex Sans", sans-serif;
+  line-height: 3rem;
+}
+
+.restaurant-menu {
+  background-color: #f3f5f5;
+  padding-bottom: 5rem;
+}
+
+.dish-overview {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: calc((86rem - 20px) / 2);
+}
+.dish-overview img {
+  width: 13rem;
+  height: 13rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.menu-categories {
+  padding: 0 1rem;
+}
+
+.menu-categories-dishes {
+  display: flex;
+  flex-wrap: wrap;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  row-gap: 3rem;
+}
+
+.dish-description {
+  color: #919595;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.dish-price {
+  color: #919595;
+}
+
+.dish-popular-price {
+  display: flex;
+  gap: 2rem;
+}
+
+.popular {
+  display: flex;
+  gap: 0.5rem;
+  color: orange;
+  font-family: "Stratos Deliveroo Web", sans-serif;
+  font-size: 1.4rem;
+}
+
+@media (width < 900px) {
+  html {
+    font-size: 55%;
+  }
+}
+@media (width < 800px) {
+  .restaurant-overview {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .restaurant-overview > div:first-child {
+    text-align: center;
+    padding: 0 10rem;
+    width: 100vw;
+  }
+  .restaurant-overview > div:last-child {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 20vw;
+  }
+  .restaurant-overview img {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 60vw;
+  }
+  .category {
+    width: 100vw;
+    text-align: center;
+  }
+  .menu-categories-dishes {
+    width: 100vw;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+  }
 }/*# sourceMappingURL=App.css.map */
