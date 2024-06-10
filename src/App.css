@@ -17,7 +17,7 @@ img {
 }
 
 .container {
-  width: 123rem;
+  max-width: 123rem;
   margin: 0 auto;
 }
 
@@ -203,5 +203,10 @@ header div p {
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
+  }
+}
+@media (width < 600px) {
+  html {
+    font-size: 50%;
   }
 }/*# sourceMappingURL=App.css.map */
