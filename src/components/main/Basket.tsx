@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import DishCounter from "../../interfaces/DishCounter";
 import BasketDish from "./basket/BasketDish";
 import DeliverooRestaurant from "../../interfaces/DeliverooRestaurant";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Basket = ({
   data,
@@ -12,6 +13,7 @@ const Basket = ({
   dishCounterList: Array<DishCounter>;
   setDishCounterList: Dispatch<SetStateAction<Array<DishCounter>>>;
 }) => {
+  const [showBasket, setShowBasket] = useState(false);
   const calculateSubTotal = () => {
     let subTotal = 0;
     for (let i = 0; i <= dishCounterList.length - 1; i++) {
@@ -24,11 +26,30 @@ const Basket = ({
     subTotal = subTotal / 100;
     return subTotal;
   };
+  const calculateNbArtible = () => {
+    let nbArtible = 0;
+    for (let i = 0; i <= dishCounterList.length - 1; i++) {
+      const dishCounter = dishCounterList[i];
+      nbArtible += dishCounter.counter;
+    }
+    return nbArtible;
+  };
   const subTotal = calculateSubTotal();
   const deliveryFee = 2.5;
+  const nbArticle = calculateNbArtible();
 
   return (
     <div className="basket-space">
+      {showBasket ? (
+        <div
+          className="close-basket"
+          onClick={() => {
+            setShowBasket(false);
+          }}
+        >
+          <FontAwesomeIcon icon={"xmark"} />
+        </div>
+      ) : null}
       <div className="valid-basket">
         <button
           className={
@@ -38,11 +59,11 @@ const Basket = ({
           Valider mon panier
         </button>
       </div>
-      {dishCounterList.length === 0 ? (
+      {nbArticle === 0 ? (
         <p className="empty-basket">Votre panier est vide</p>
       ) : (
         <>
-          <div className="basket">
+          <div className={"basket" + (showBasket ? " show-flex" : "")}>
             {dishCounterList.map((dishCounter) => {
               return (
                 <BasketDish
@@ -58,7 +79,11 @@ const Basket = ({
               );
             })}
           </div>
-          <div className="total-without-delivery">
+          <div
+            className={
+              "total-without-delivery" + (showBasket ? " show-flex" : "")
+            }
+          >
             <div>
               <p>Sous-total</p>
               <p>{subTotal.toFixed(2).replace(".", ",") + " €"}</p>
@@ -68,7 +93,7 @@ const Basket = ({
               <p>{deliveryFee.toFixed(2).replace(".", ",") + " €"}</p>
             </div>
           </div>
-          <div className="total-basket">
+          <div className={"total-basket" + (showBasket ? " show-block" : "")}>
             <div>
               <p>Total</p>
               <p>
@@ -77,6 +102,26 @@ const Basket = ({
             </div>
           </div>
         </>
+      )}
+      {nbArticle === 0 ? (
+        <div className="empty-little-screen-basket">
+          <button>Voir le panier</button>
+        </div>
+      ) : (
+        <div
+          className="little-screen-basket"
+          onClick={() => {
+            setShowBasket(true);
+          }}
+        >
+          {showBasket ? null : <p>{nbArticle}</p>}
+          <p>{showBasket ? "Valider mon panier" : "Voir mon panier"}</p>
+          {showBasket ? null : (
+            <p>
+              {(subTotal + deliveryFee).toFixed(2).replace(".", ",") + " €"}
+            </p>
+          )}
+        </div>
       )}
     </div>
   );

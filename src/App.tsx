@@ -9,8 +9,9 @@ import {
   faStar,
   faPlus,
   faMinus,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faSpinner, faStar, faPlus, faMinus);
+library.add(faSpinner, faStar, faPlus, faMinus, faXmark);
 
 function App() {
   return (

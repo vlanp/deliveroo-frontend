@@ -42,6 +42,7 @@ h3 {
 header {
   height: 7rem;
   border-bottom: 1px solid lightgrey;
+  padding: 0 10px;
 }
 header div {
   display: flex;
@@ -287,6 +288,12 @@ header img {
   align-items: center;
 }
 
+.little-screen-basket,
+.empty-little-screen-basket,
+.close-basket {
+  display: none;
+}
+
 @media (width < 1150px) {
   .dish-overview {
     width: 98%;
@@ -307,5 +314,77 @@ header img {
   }
   .restaurant-overview img {
     width: 100%;
+  }
+}
+@media (width < 769px) {
+  .basket-space {
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid lightgrey;
+    border-radius: 0;
+  }
+  .valid-basket,
+  .empty-basket,
+  .basket,
+  .total-without-delivery,
+  .total-basket {
+    display: none;
+  }
+  .little-screen-basket {
+    margin: 0 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #8f3d82;
+    height: 6rem;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.4rem;
+    align-items: center;
+  }
+  .little-screen-basket > p:first-child:not(:last-child) {
+    background-color: #360550;
+    padding: 1rem;
+  }
+  .little-screen-basket > p:first-child:last-child {
+    flex: 1;
+    text-align: center;
+  }
+  .little-screen-basket:hover {
+    cursor: pointer;
+  }
+  .empty-little-screen-basket {
+    margin: 0 10px;
+    display: flex;
+  }
+  .empty-little-screen-basket button {
+    background: #bac3c3;
+    color: #8b9a9b;
+    cursor: not-allowed;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    flex: 1;
+    padding: 20px;
+    border: none;
+  }
+  .show-flex {
+    display: flex;
+  }
+  .show-block {
+    display: block;
+  }
+  .total-basket {
+    margin-bottom: 20px;
+  }
+  .close-basket {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .close-basket :hover {
+    cursor: pointer;
   }
 }/*# sourceMappingURL=App.css.map */

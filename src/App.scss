@@ -14,6 +14,8 @@ $restaurant-padding-right-left: 10px;
 $side-width: 35rem;
 $orange: #ff8000;
 $total-color: #2e3333;
+$violet: #8f3d82;
+$teinted-violet: #360550;
 
 // GENERAL
 
@@ -62,6 +64,7 @@ h3 {
 header {
   height: $header-height;
   border-bottom: 1px solid lightgrey;
+  padding: 0 10px;
   div {
     display: flex;
     align-items: center;
@@ -315,6 +318,12 @@ header {
   align-items: center;
 }
 
+.little-screen-basket,
+.empty-little-screen-basket,
+.close-basket {
+  display: none;
+}
+
 // FOOTER
 
 // MEDIA QUERY
@@ -343,13 +352,85 @@ header {
   }
 }
 
-// @media (width < 769px) {
-//   .basket-space {
-//     position: fixed;
-//     bottom: 0;
-//     top: auto;
-//   }
-// }
+@media (width < 769px) {
+  .basket-space {
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid lightgrey;
+    border-radius: 0;
+  }
+
+  .valid-basket,
+  .empty-basket,
+  .basket,
+  .total-without-delivery,
+  .total-basket {
+    display: none;
+  }
+
+  .little-screen-basket {
+    margin: 0 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: $violet;
+    height: 6rem;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.4rem;
+    align-items: center;
+    > p:first-child:not(:last-child) {
+      background-color: $teinted-violet;
+      padding: 1rem;
+    }
+    > p:first-child:last-child {
+      flex: 1;
+      text-align: center;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .empty-little-screen-basket {
+    margin: 0 10px;
+    display: flex;
+    button {
+      background: #bac3c3;
+      color: #8b9a9b;
+      cursor: not-allowed;
+      border-radius: 5px;
+      font-size: 1.4rem;
+      flex: 1;
+      padding: 20px;
+      border: none;
+    }
+  }
+
+  .show-flex {
+    display: flex;
+  }
+
+  .show-block {
+    display: block;
+  }
+
+  .total-basket {
+    margin-bottom: 20px;
+  }
+
+  .close-basket {
+    display: flex;
+    justify-content: flex-end;
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
 
 // @media (width < 900px) {
 //   html {
