@@ -1,13 +1,10 @@
-import favicon from "../assets/img/favicon.png";
+import favicon from "../assets/img/favicon.svg";
 
 const Header = () => {
   return (
     <header>
       <div className="container">
-        <div>
-          <img src={favicon} alt="deliveroo" />
-        </div>
-        <p>deliveroo</p>
+        <img src={favicon} alt="deliveroo" />
       </div>
     </header>
   );

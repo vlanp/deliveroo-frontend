@@ -4,8 +4,13 @@ import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSpinner, faStar } from "@fortawesome/free-solid-svg-icons";
-library.add(faSpinner, faStar);
+import {
+  faSpinner,
+  faStar,
+  faPlus,
+  faMinus,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faSpinner, faStar, faPlus, faMinus);
 
 function App() {
   return (

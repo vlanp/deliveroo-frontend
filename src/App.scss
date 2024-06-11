@@ -6,12 +6,14 @@
 
 $green: #00cdbd;
 $description-color: #919595;
+$normal-grey: #2e3333;
 $background-color: #f3f5f5;
 $header-height: 7rem;
 $container-width: 123rem;
 $restaurant-padding-right-left: 10px;
 $side-width: 35rem;
 $orange: #ff8000;
+$total-color: #2e3333;
 
 // GENERAL
 
@@ -52,32 +54,21 @@ h3 {
   margin-bottom: 1rem;
   font-size: 1.8rem;
   line-height: 2.5rem;
+  color: $normal-grey;
 }
 
 // HEADER
 
 header {
   height: $header-height;
-  display: flex;
   border-bottom: 1px solid lightgrey;
   div {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    div {
-      width: 6rem;
-      height: 6rem;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-    }
-    img {
-      height: 8rem;
-    }
-    p {
-      font-size: 3rem;
-      color: $green;
-    }
+    height: 100%;
+  }
+  img {
+    height: 6rem;
   }
 }
 
@@ -131,22 +122,47 @@ header {
   }
 }
 
-.restaurant-menu {
+// MENU
+
+.main-space {
   background-color: $background-color;
-  padding-bottom: 5rem;
+}
+
+.main-content {
+  padding: 20px 10px;
+  display: flex;
+  gap: 3rem;
+}
+
+.restaurant-menu {
+  flex: 1;
+}
+
+.menu-categories-dishes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .dish-overview {
+  padding: 1rem;
+  width: 49%;
+  display: flex;
   background-color: white;
   border-radius: 5px;
-  padding: 1rem;
-  display: flex;
   justify-content: space-between;
   gap: 2rem;
-  width: calc(
-    ($container-width - $side-width - 2rem - 2 * $restaurant-padding-right-left) /
-      2
-  );
+  &:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 5px 10px 20px 8px rgba(145, 149, 149, 1);
+    -moz-box-shadow: 5px 10px 20px 8px rgba(145, 149, 149, 1);
+    box-shadow: 5px 10px 20px 8px rgba(145, 149, 149, 1);
+  }
+}
+
+.dish-right-part {
   img {
     width: 13rem;
     height: 13rem;
@@ -154,22 +170,13 @@ header {
   }
 }
 
-.menu-categories {
-  padding: 0 1rem;
-}
-
-.menu-categories-dishes {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 2rem;
-  row-gap: 3rem;
-}
-
 .dish-description {
   color: $description-color;
   line-height: 2rem;
   margin-bottom: 1rem;
   font-size: 1.4rem;
+  height: 4rem;
+  overflow: hidden;
 }
 
 .dish-price {
@@ -189,51 +196,202 @@ header {
   font-size: 1.4rem;
 }
 
-// FOOTER
+// BASKET
 
-// MEDIA QUERY
+.basket-space {
+  margin-top: 20px;
+  width: $side-width;
+  padding: 10px 0;
+  height: fit-content;
+  background-color: white;
+  border-radius: 5px;
+  position: sticky;
+  top: 20px;
+}
 
-@media (width < 900px) {
-  html {
-    font-size: 55%;
+.basket {
+  border-bottom: 1px solid lightgrey;
+  padding: 10px 0;
+  margin: 0 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.count-dish {
+  display: flex;
+  align-items: center;
+  width: 7rem;
+  justify-content: space-between;
+  p {
+    color: $description-color;
+  }
+  .plus-minus-icon {
+    color: $green;
+    border: 1px solid $green;
+    border-radius: 50%;
+    width: 1.4rem;
+    height: 1.4rem;
+    padding: 0.1rem;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
-@media (width < 800px) {
-  .restaurant-overview {
-    flex-direction: column;
-    gap: 2rem;
-    > div:first-child {
-      text-align: center;
-      padding: 0 10rem;
-      width: 100vw;
-    }
-    > div:last-child {
-      width: fit-content;
-      margin: 0 calc(40vw / 2);
-    }
-    img {
-      height: fit-content;
-      width: 60vw;
-    }
-  }
-
-  .category {
-    width: 100vw;
-    text-align: center;
-  }
-
-  .menu-categories-dishes {
-    width: 100vw;
+.dish-basket {
+  display: flex;
+  color: $normal-grey;
+  justify-content: space-between;
+  .left-count-dish {
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
+    gap: 1rem;
+    > p {
+      width: 17rem;
+      line-height: 2rem;
+    }
+  }
+  > p {
+    width: 7rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
   }
 }
 
-@media (width < 600px) {
-  html {
-    font-size: 50%;
+.valid-basket {
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  button {
+    font-size: 1.8rem;
+    color: white;
+    background-color: $green;
+    width: 100%;
+    padding: 15px 0;
+    border-radius: 5px;
+    border: none;
+  }
+  .valid-basket-disabled {
+    background: #bac3c3;
+    color: #8b9a9b;
+    cursor: not-allowed;
   }
 }
+
+.total-without-delivery {
+  border-bottom: 1px solid lightgrey;
+  color: $normal-grey;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  margin: 0 2rem;
+  > div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.total-basket {
+  padding: 2rem;
+  padding-bottom: 0;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 2rem;
+    color: $total-color;
+  }
+}
+
+.empty-basket {
+  color: $description-color;
+  display: flex;
+  justify-content: center;
+  height: 10rem;
+  align-items: center;
+}
+
+// FOOTER
+
+// MEDIA QUERY
+
+@media (width < 1150px) {
+  .dish-overview {
+    width: 98%;
+  }
+}
+
+@media (width < 885px) {
+  .restaurant-overview {
+    flex-direction: column-reverse;
+    align-items: center;
+    > div:first-child {
+      width: 80%;
+      padding-right: 0;
+      text-align: center;
+    }
+    > div:last-child {
+      width: 60%;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+
+// @media (width < 769px) {
+//   .basket-space {
+//     position: fixed;
+//     bottom: 0;
+//     top: auto;
+//   }
+// }
+
+// @media (width < 900px) {
+//   html {
+//     font-size: 55%;
+//   }
+// }
+
+// @media (width < 800px) {
+//   .restaurant-overview {
+//     flex-direction: column;
+//     gap: 2rem;
+//     > div:first-child {
+//       text-align: center;
+//       padding: 0 10rem;
+//       width: 100vw;
+//     }
+//     > div:last-child {
+//       width: fit-content;
+//       margin: 0 calc(40vw / 2);
+//     }
+//     img {
+//       height: fit-content;
+//       width: 60vw;
+//     }
+//   }
+
+//   .category {
+//     width: 100vw;
+//     text-align: center;
+//   }
+
+//   .menu-categories-dishes {
+//     width: 100vw;
+//     display: flex;
+//     flex-wrap: nowrap;
+//     flex-direction: column;
+//     align-items: center;
+//   }
+// }
+
+// @media (width < 600px) {
+//   html {
+//     font-size: 50%;
+//   }
+// }

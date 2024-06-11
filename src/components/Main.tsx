@@ -4,10 +4,15 @@ import Loading from "./main/Loading";
 import RestaurantOverview from "./main/RestaurantOverview";
 import DeliverooRestaurant from "../interfaces/DeliverooRestaurant";
 import Menu from "./main/Menu";
+import Basket from "./main/Basket";
+import DishCounter from "../interfaces/DishCounter";
 
 const Main = () => {
   const [data, setData] = useState<DeliverooRestaurant>();
   const [isLoading, setIsLoading] = useState(true);
+  const [dishCounterList, setDishCounterList] = useState<Array<DishCounter>>(
+    []
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +32,20 @@ const Main = () => {
       {data ? (
         <>
           <RestaurantOverview data={data} />
-          <Menu data={data} />
+          <section className="main-space">
+            <div className="main-content container">
+              <Menu
+                data={data}
+                dishCounterList={dishCounterList}
+                setDishCounterList={setDishCounterList}
+              />
+              <Basket
+                data={data}
+                dishCounterList={dishCounterList}
+                setDishCounterList={setDishCounterList}
+              />
+            </div>
+          </section>
         </>
       ) : null}
     </main>
